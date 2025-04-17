@@ -1,8 +1,6 @@
 import express from 'express';
+import { tokenValidate } from '../middleware.js';
+import controller from '../controller/auth-controller.js';
 const router = express.Router();
-router.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'Auth route is working',
-    });
-});
+router.get('/', tokenValidate, controller.getIsLogged);
 export default router;
